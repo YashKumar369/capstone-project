@@ -1,0 +1,450 @@
+Project Name: JBook – Social Network System for Job Placement
+
+Course: Bachelor of Information Technology 
+(Capstone Project - CPRO306)
+
+Team Members: 
+Bipin Garu K231287
+Dipson Shahi Thakuri K230785
+Sudip Poudel K231862
+Yash Kumar K231284
+
+Date: 09/12/2025
+Words Count: 2446
+
+Table of Contents
+EXECUTIVE SUMMARY	4
+INTRODUCTION	5
+Business Description	5
+Problem Statement	5
+Project Objectives	6
+Scope Statement	6
+PROJECT METHODOLOGY	8
+Business Requirements	8
+Functional Requirements	9
+Module 1: User Profile Management	9
+Module 2: Job Posting & Application	10
+Module 3: Social Networking	10
+Module 4: Messaging System	10
+4.3 Non-Functional Requirements	11
+4.4 Hardware & Software Requirements	11
+SYSTEM DESIGN & MODELING	13
+Use Case Modeling	13
+Data Flow Diagrams (DFD)	15
+Database Design & ERD	16
+Class Diagram	17
+USER INTERFACE (UI) DESIGN	19
+Design Principles	19
+Wireframes & Storyboards	19
+SECURITY & DATA PROTECTION (DPIA)	21
+Encryption & Anonymization	21
+Data Protection Impact Assessment (DPIA)	21
+QUALITY ASSURANCE & IMPLEMENTATION	23
+Test Plan	23
+PROJECT MANAGEMENT	24
+Work Breakdown Structure (WBS)	24
+Group Contribution & Management	24
+CONCLUSION	26
+
+
+
+
+EXECUTIVE SUMMARY
+
+
+JBook is a web application made for this project. It is created to combine job searching and social interaction in one platform. Most job portals only allow users to apply for jobs. This project tries to go beyond that.
+Recruiters can post job vacancies on JBook. Users can apply for these jobs and target a job that fits their motive. They can also post updates, send messages, and join groups just like a social media platform. These features help users connect with others while searching for jobs.
+The application is built using PHP. This SRS document explains how the system will work. It also lists the requirements needed to run the application properly and safely.
+
+
+
+INTRODUCTION
+
+
+Business Description
+
+The recruitment industry has historically been transactional: a company needs a worker, a worker needs a job, and they meet to exchange contracts. However, in the digital age, recruitment has become "relational." Companies must now market themselves to attract top talent (Employer Branding), and candidates must curate a professional online persona.
+JBook operates as a niche social networking ecosystem designed specifically for the employment sector. Unlike traditional job boards, which are static and transactional, JBook encourages continuous engagement. Users do not just visit to apply but to network, share industry news, and build a professional brand. The platform serves three distinct user bases: Job Seekers looking for employment and networking; Employers seeking talent and company branding; and Administrators who manage the platform's integrity.
+
+Problem Statement
+
+Current recruitment processes are often too conventional and time consuming.
+	•	Lack of Feedback: Job Seekers often face a rejection in even feedback from employer or advertiser with no communication.
+	•	Cultural Fit: Employers cannot judge a candidate's personality or "soft skills" from a static PDF resume.
+	•	Fragmented Tools: Users must switch between LinkedIn for networking and other boards for applying.
+The JBook system solves these issues by integrating the application process directly into a social environment, allowing for real-time communication and deeper candidate profiling.
+
+Project Objectives
+
+	•	To design a portal where users can register, create detailed profiles, and upload resumes.
+	•	To build a news feed type storyboard similar to Facebook, allowing posts, likes, shares, and comments.
+	•	To facilitate a direct "Talking System" (Messaging) between employers and candidates.
+	•	To provide advanced filtering for job searches based on industry, salary, and location.
+	•	To ensure administrative control via a dashboard for user moderation and job approval.
+
+Scope Statement
+
+In-Scope:
+	•	Authentication: Secure login/signup for 3 roles (Seeker, Employer, Admin).
+	•	Social Features: Timeline feed, connection requests, messaging system, and groups.
+	•	Recruitment Features: Job posting, resume parsing/upload, application tracking.
+	•	Admin Features: Content moderation, user banning, analytics dashboard.
+	•	Platform: Responsive Web Application (Desktop & Mobile Browser).
+
+
+Out-of-Scope:
+	•	Native Mobile Applications (iOS/Android .apk/.ipa files).
+	•	Video Conferencing/Interviewing features.
+	•	Internal Payroll or HR management systems for employers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PROJECT METHODOLOGY
+
+
+Selection of Agile Scrum
+
+We compared various software development lifecycles (SDLC), the team selected Agile Scrum over the traditional Waterfall model. The Waterfall model, which requires rigid, sequential phases, was deemed unsuitable for JBook due to the "Social" nature of the project. Social networks rely heavily on "User Experience" (UX), which is subjective and requires frequent testing.
+Application of Scrum in JBook
+	•	Sprints: The development timeline is divided into 2-week "Sprints." This allows the team to focus on small, manageable work of functionality (Sprint 1: Login System, Sprint 2: News Feed).
+	•	The Product Backlog: All requirements listed in this SRS have been converted into "User Stories" (As a Job Seeker, I want to filter jobs by salary so that I don't waste time on low-paying roles.", this is one of the examples). This helped us to have a goal in mind to understand user better.
+	•	Daily Stand-up: A 15-minute daily meeting was confirmed to be held for discussing progress and blockers that might affect our progress as a group. We also make sure that connectivity with database or incisions error are resolved as soon as possible.
+	•	Sprint Review: At the end of each sprint, a working prototype is reviewed. This ensures that if the UI design for the Messaging System needs improvement, we can do it without moving forward. Each Sprint was met with the conclusion where each prototype was reviewed for future purposes that might hinder the progress in carelessness.
+
+Business Requirements
+
+User Growth: The system must support viral loops (inviting friends) to grow the network.
+Monetization: The architecture must support "Premium" job posts (highlighted jobs) for revenue generation.
+User engagement and sustained platform is something that we as JBook targeted by supporting the growth in business. User engagement was promoted by the system beyond job applications by integrating recruitment features with social interaction like messaging platform which led to enhanced platform retention and sustained value between the parties.
+Nonetheless the system should enable future growth and possibly revenue generation through a lot of modes including organised user information related access and modular system architecture. Business requirements like this guarantee that JBook stays flexible for future opportunities while ensuring efficiencies and data accuracy that matches the standards.
+
+Functional Requirements
+
+The functional requirements outline the essential system abilities needed to facilitate recruitment and professional networking endeavors. These criteria guarantee that users can effectively engage with the platform while preserving consistency, precision, and security in all system functions.
+
+Module 1: User Profile Management
+
+FR-01: The system must enable Job Seekers to upload resumes (PDF/Docx) and automatically extract skills.
+FR-02: Employers should have the capability to upload their company logos and connect to their external websites.
+FR-03: Users have the ability to set privacy options to manage who can view their posts or profile information.
+
+Module 2: Job Posting & Application
+
+FR-04: Employers have the ability to create, modify, and remove job listings.
+FR-05: Job posts need admin approval prior to being published (Moderation).
+FR-06: Job seekers are able to find jobs by utilizing keywords, location, and salary specifications.
+Module 3: Social Networking
+
+FR-07: Users are able to share text/images on a public or restricted News Feed.
+FR-08: Users have the ability to react (Like) and leave comments on posts.
+FR-09: The system must provide a mechanism for connection requests (Send/Accept/Reject).
+
+Module 4: Messaging System
+
+FR-10: An instant messaging interface must facilitate communication among users who are connected.
+FR-11: Employers can start conversations with applicants even if they aren't "connected."
+
+Non-Functional Requirements
+
+Standards that revolve around performance make sure the system reacts quickly to the actions of users. It does make sure that page load times are below 2 seconds, the reason for that is we want the experience to fill smooth. Standards on availability does focus on the system being online at least 99.5% were of the time, the main motive behind this is that we want the users to access it whenever they need or feel like. Protecting sensitive information, secure connections, and Role Based access controls is what we are trying to implement as security measures in this eve growing field. Scalability standards ensure the platform can support more users overtime without slowing down or losing performance.
+
+
+	•	Performance: The system must load pages in under 2 seconds and handle 10,000 concurrent users.
+	•	Availability: The system guarantees 99.5% uptime.
+	•	Security: All passwords must be hashed using Bcrypt. All data transmission must be via HTTPS.
+	•	Reliability: The system must handle errors gracefully, displaying informative messages rather than system crash codes.
+	•	
+Hardware & Software Requirements
+
+Software Stack (Recommended):
+
+	•	Language: PHP 8.2 (Selected per project brief requirement).
+	•	Database: MySQL / MariaDB (Relational Data Management).
+	•	Frontend: HTML5, CSS3, JavaScript (React.js or jQuery), Bootstrap 5.
+	•	Web Server: Apache or Nginx.
+	•	
+Hardware (Server Side):
+
+	•	Processor: Virtual vCPU (2 Cores minimum for initial deployment).
+	•	RAM: 4GB Minimum.
+	•	Storage: SSD Storage (Scalable via AWS S3 for user uploads).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SYSTEM DESIGN & MODELING
+
+
+The system design model provided a structured representation of users processes and data interaction in the platform. Clear understanding of system behaviour, validating requirement completeness and guiding developers during implementation was supported by these models. Also the implementation was forwardly illustrated when to it came to functional flow and data relationships.
+
+Use Case Modelling
+
+The system interacts with three primary actors.
+
+Use Case Diagram Description:
+
+	•	Job Seeker: Connects to [Search Job], [Apply for Job], [Update Profile], [Send Message].
+	•	Employer: Connects to [Post Job], [View Applicants], [Shortlist Candidate], [Company Profile].
+	•	Admin: Connects to [Approve Job], [Ban User], [View Analytics].
+ 
+	•	Detailed Use Case: "Apply for Job"
+	•	Actor: Job Seeker
+	•	Precondition: User is logged in and has a Resume on file.
+	•	Main Flow:
+	•	User clicks "Apply" on a Job Post.
+	•	System displays "Review Application" modal showing current Resume.
+	•	User clicks "Submit".
+	•	System validates submission and adds entry to Applications table.
+	•	System notifies Employer.
+	•	Alternate Flow: If no resume exists, System redirects user to Profile Builder.
+Data Flow Diagrams (DFD)
+
+Level 0 (Context Diagram):
+
+
+
+Shows the User sending "Registration Info" and "Job Data" to the "JBook System," and receiving "Notifications" and "Search Results."
+
+Level 1 DFD:
+
+Breaks the system into:
+	•	Auth Process: Handles login/verify.
+	•	Job Management Process: Handles storage of job posts.
+	•	Matching Engine: Connects Seekers to Jobs.
+	•	Social Engine: Handles posts and messages.
+
+Database Design & ERD
+
+The database will be normalized to 3rd Normal Form (3NF) to ensure data integrity.
+
+Key Entities:
+
+	•	Users: user_id (PK), email, password_hash, user_type, created_at.
+	•	Profiles: profile_id (PK), user_id (FK), resume_path, skills, education.
+	•	Jobs: job_id (PK), employer_id (FK), title, description, is_approved.
+	•	Applications: app_id (PK), job_id (FK), seeker_id (FK), status.
+	•	Posts: post_id (PK), user_id (FK), content, image_url.
+
+
+Class Diagram
+
+Object-oriented structure showing the User class inherited by Employer and Seeker, and their association with JobPost and Message classes.
+
+
+
+
+
+
+
+
+USER INTERFACE (UI) DESIGN
+
+
+Design Principles
+
+	•	As per the UI requirements, the interface aims for:
+	•	Consistency: Navigation bars and footers remain identical across all pages.
+	•	Feedback: "Loading" spinners and "Success" toasts appear for all user actions.
+	•	Accessibility: WCAG 2.1 compliance (high contrast, alt text for images).
+
+Wireframes & Storyboards
+
+Storyboard 1: The News Feed (Home)
+	•	Header: Logo, Search Bar, Notification Bell, Profile Pic.
+	•	Left Sidebar: User Shortcuts, Groups, "My Jobs".
+	•	Center: The Feed. Input box "What's on your mind?" followed by infinite scroll of posts.
+	•	Right Sidebar: "Jobs you might like" (Recommendation Engine) and "Who to follow".
+Storyboard 2: The Employer Dashboard
+	•	Top Card: "Active Jobs" count, "Total Applicants" count.
+	•	Table: List of current jobs with status (Active/Pending/Expired). Actions: Edit, Delete, View Applicants.
+
+The user interface design focusses mainly on simplicity, consistency and accessibility so that the users can complete tasks with simplistic efforts. We made sure that UI is pretty user friendly so that there is clear navigation structure, self-explanatory layout and visual elements that improve usability and reduce learning time across all the system features
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SECURITY & DATA PROTECTION (DPIA)
+
+Security Internet protection was something that we took seriously in developing this system. We made sure that they are appropriate controls, implemented, to ensure responsible handling of personal information, helps us restricting access to authorised users, and eventually reduce potential risk associated with data misuse or the worst, unauthorised disclosure.
+
+Encryption & Anonymization
+
+To meet the assessment criteria for data security:
+	•	Encryption: User passwords are never stored in plain text. We utilize the PHP password_hash() function (Bcrypt algorithm).
+	•	Transmission: An SSL Certificate is mandatory. All HTTP requests are redirected to HTTPS.
+	•	Anonymization: For the "Analytics" module viewable by Admins, user identities are stripped. (User: John Doe becomes User_ID: 8842 in trend reports).
+
+Data Protection Impact Assessment (DPIA)
+
+Risk Description
+Probability
+Impact
+Mitigation Strategy
+Unauthorized Access to Resumes
+Medium
+High
+Implementation of Strict Access Control Lists (ACL). Only the specific employer a seeker applied to can generate a temporary download link.
+SQL Injection Attack
+High
+High
+Use of Prepared Statements (PDO) for all database queries. Input validation on all form fields.
+Data Scraping (Bots)
+High
+Medium
+Implementation of CAPTCHA on signup and rate-limiting on API requests (max 60 requests/min).
+User Identification Leak
+Low
+High
+"Right to Erasure" feature implemented. Users can permanently delete their data via settings.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QUALITY ASSURANCE & IMPLEMENTATION
+
+
+
+Test Plan
+
+
+Test ID
+Module
+Description
+Expected Result
+TC-01
+Auth
+User attempts login with wrong password
+System displays "Invalid Credentials" error.
+TC-02
+Job
+Employer posts job with missing salary
+System prompts "Salary field is required".
+TC-03
+Social
+User uploads 20MB image (Limit 2MB)
+System rejects file and displays size limit warning.
+TC-04
+Security
+SQL Injection attempt in Search Bar
+System sanitizes input; no database error revealed.
+
+
+
+
+
+
+PROJECT MANAGEMENT
+
+
+Work Breakdown Structure (WBS)
+
+	•	Planning Phase
+	•	Requirement Gathering
+	•	SRS Documentation
+	•	Design Phase
+	•	UI/UX Wireframing
+	•	Database Normalization
+	•	Development Phase
+	•	Backend API (PHP)
+	•	Frontend Integration
+	•	Testing Phase
+	•	Unit Testing
+	•	Security Audit
+	•	Finalization
+	•	User Manual Creation
+	•	Final Presentation
+
+Group Contribution & Management
+
+Our team used Trello for task tracking because it was easy for us to follow that software. GitHub was a popular opinion and option for us to have for version control and documentation. Bi- weekly stand-up meetings were made compulsory for us so that no member fell below the 20% contribution threshold.
+Yash Kumar: Project Management, Frontend.
+Sudip Poudel: Database Design.
+Bipin Garu: UI/UX, Backend Architecture.
+Dipson Shahi Thakuri: Security/DPIA, Documentation.
+
+CONCLUSION
+
+
+The JBook software requirement make sure that there is a robust and secure, along with the user centric solution to the challenges that are being faced in the modern recruitment industry. By using the functional requirements of a job board with the engagement mechanics of a social media platform or a social network JBook addresses the most important market failure over candidate disengagement.
+The report has critically and allied the system architecture, PHP/MySQL due to its reliability, cost effectiveness and compatibility with the project. The inclusion of a comprehensive data protection impact assessment demonstrates the projects commitment is not only limited to functionality but also to the ethical and legal handling of user data on which we paid extra attention to. That is also requirement that is crucial in an era of increasing cyber threats and privacy regulations (GDPR/APP)
+Entity relationship diagrams and use case models helps us to provide a clear blueprint for the development team which ensures that the database is normalised to prevent redundancy and the user flow is simple and self-explanatory. Agile scrum methodology further ensures that the project remains flexible, and it can adapt to build phase.
+In conclusion, the JBook project is feasible, well-planned, and technically sound. This SRS serves as the definitive guide for the successful execution of the project, ensuring all business and technical objectives are met with high quality.
+REFERENCES
+
+
+	•	Academic Sources:
+	•	Sommerville, I. (2016). Software Engineering. 10th ed. Boston: Pearson.
+	•	Dennis, A., Wixom, B.H. and Tegarden, D. (2020). Systems Analysis and Design: An Object-Oriented Approach with UML. 6th ed. Hoboken: John Wiley & Sons.
+	•	Laudon, K.C. and Laudon, J.P. (2021). Management Information Systems: Managing the Digital Firm. 17th ed. New York: Pearson.
+	•	Pressman, R.S. and Maxim, B.R. (2020). Software Engineering: A Practitioner's Approach. 9th ed. New York: McGraw-Hill Education.
+	•	Connolly, T. and Begg, C. (2015). Database Systems: A Practical Approach to Design, Implementation, and Management. 6th ed. Boston: Pearson.
+	•	Shneiderman, B., Plaisant, C., Cohen, M., Jacobs, S., Elmqvist, N. and Diakopoulos, N. (2018). Designing the User Interface: Strategies for Effective Human-Computer Interaction. 6th ed. Pearson.
+
+	•	Technical/Industry Standards:
+	•	7. PHP.net. (2025). PHP Manual - Password Hashing. [Online] Available at: https://www.php.net/manual/en/book.password.php [9/12/2025]
+	•	8. OWASP. (2021). OWASP Top 10:2021. [Online] Available at: https://owasp.org/Top10/ [9/12/2025].
+	•	9. Scrum.org. (2024). The Scrum Guide. [Online] Available at: https://scrumguides.org/ [9/12/2025
+	•	10. W3C. (2023). Web Content Accessibility Guidelines (WCAG) 2.1. [Online] Available at: https://www.w3.org/TR/WCAG21/ [9/12/2025].
+

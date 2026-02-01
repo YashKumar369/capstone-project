@@ -1,0 +1,357 @@
+
+
+Kent Institute
+Capstone Project CPRO306 - IT
+Assessment 2: Interim SRS Report
+Project 27: JBook- Social Network System for Job Placement
+Version: Final Version 	Date: 25/11/2025
+
+Team Member
+Member 1: K231287 Bipin Garu
+Member 2: K230785 Dipson Shahi Thakuri
+Member 3: K231862 Sudip Poudel
+Member 4: K231284 Yash Kumar
+Words: 1176
+
+
+
+
+
+
+
+
+
+
+
+Index
+
+	•	Purpose, Scope and Objectives (IEEE Std 1058-1998 Guidance)  1.1 Purpose  1.2 Scope  1.3 Objectives
+	•	Work Breakdown Structure (WBS) with Milestones (IEEE Std 1058-1998 Guidance)  2.1 Phase 1: Planning & Requirements  2.2 Phase 2: Core Development  2.3 Phase 3: Advanced Features  2.4 Phase 4: Testing & Deployment  2.5 Phase 5: Documentation & Training  2.6 Milestones Summary
+	•	Team Members and Responsibilities  3.1 Team Member 1 – Backend Lead (Authentication & User Management)  3.2 Team Member 2 – Backend Lead (Job Management & Applications)  3.3 Team Member 3 – Full Stack (Social Features & Communication)  3.4 Team Member 4 – Full Stack (Admin, Analytics & Frontend)
+	•	Key Deliverables (IEEE Std 1058-1998 Guidance)  4.1 Technical Deliverables  4.2 Documentation Deliverables  4.3 Quality Assurance Deliverables  4.4 Deployment Deliverables  4.5 Recommended Technology Stack  4.6 Critical Success Factors
+
+
+
+
+
+
+1.	Purpose, Scope and Objectives IEEE Std 1058-1998 Guidance
+
+Purpose
+
+To develop a reliable online platform that help facilitating placement of jobs in more productive manner. It operates in a unique algorithm by connecting job hunters with employers through social networking abilities. It not only streamlines the processes involved around applications but also develops a modern sense of job seeking.
+
+Scope
+The system encompasses:
+•	Multi-role user management (Job Seekers, Employers, Admins)
+•	Complete job lifecycle management (posting, searching, applying, tracking)
+•	Social networking features enabling professional connections
+•	Real-time communication systems
+•	Administrative oversight and content moderation
+•	Analytics and reporting for all stakeholders
+•	Resume building and profile enhancement tools
+•	Payment processing for premium features
+
+Objectives
+
+1.	Primary Objective: Creating a secure, user-friendly platform that reduces time-to-hire for employers and improves job discovery for seekers
+2.	Business Satisfaction Criteria: 
+o	System uptime of 99.5% minimum
+o	Page load times under 2 seconds
+o	Support for 10,000+ concurrent users
+o	User satisfaction rating of 4/5 or higher
+3.	Products to be Delivered: 
+o	Fully functional web application with responsive design
+o	Admin dashboard with analytics
+o	Mobile-responsive interface
+o	Documentation (user manuals, technical documentation, API documentation)
+o	Training materials for administrators
+4.	Integration: The system will operate as a standalone platform with potential integration points for: 
+o	Email services (SMTP)
+o	Payment gateways
+o	Third-party authentication (optional OAuth)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.	WBS (Work Breakdown Structure) including Milestones IEEE Std 1058-1998 Guidance
+
+Phase 1: Planning & Requirements (Weeks 1-2)
+
+•	Requirements gathering and finalization
+•	Hardware/software specification
+•	Database design and architecture planning
+•	UI/UX wireframing and design mock-ups
+•	Milestone 1: Documented requirements and approval of design.
+
+Phase 2: Core Development (Weeks 3-8)
+
+Sprint 1: Authentication and User Management.
+•	User registration system
+•	Email/phone verification
+•	Login/logout functionality
+•	Password reset mechanism
+•	User profile management
+•	Milestone 2: Authentication system complete
+Sprint 2: Job Management and Search (Weeks 5-6)
+•	Job posting functionality
+•	Job search and filtering
+•	Job application system
+•	Application tracking
+•	Milestone 3: Core job functionality complete
+Sprint 3: Social Features and Communication (Weeks 7-8)
+•	News feed implementation
+•	Connection system
+•	Groups/communities
+•	Messaging system (real-time chat)
+•	Notifications system
+•	Milestone 4: Social networking features complete
+
+Phase 3: Advanced Features (Weeks 9-11)
+
+•	Resume builder/parser
+•	Recommendation engine
+•	Admin dashboard
+•	Employer dashboard
+•	Analytics and reporting
+•	Payment/subscription system
+•	Milestone 5: All advanced features implemented
+
+Phase 4: Testing and Deployment (Weeks 12-14)
+
+•	Unit testing
+•	Integration testing
+•	Security testing
+•	Performance optimization
+•	User acceptance testing (UAT)
+•	Deployment to production
+•	Milestone 6: System deployed and live
+
+Phase 5: Documentation and Training (Week 15)
+
+•	Technical documentation
+•	User manuals
+•	Admin training
+•	Final Milestone: Project complete with full documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.	Team Members (4-Person Team)
+
+Team Member 1: Backend Lead - Authentication & User Management
+
+Responsibilities:
+•	User registration and authentication system
+•	Email/phone verification
+•	Password reset/change functionality
+•	User profile management (Job Seekers & Employers)
+•	Privacy settings implementation
+•	Session management and security
+•	Role-based access control (RBAC)
+Deliverables:
+•	User registration module
+•	Login/logout system
+•	Profile management interface
+•	Password recovery system
+•	User database schema
+•	API endpoints for user operations
+
+Team Member 2: Backend Lead - Job Management & Applications
+
+Responsibilities:
+•	Job posting CRUD operations
+•	Job search engine with advanced filtering
+•	Job application system
+•	Application tracking mechanism
+•	Admin job moderation system
+•	Job archiving and expiry automation
+•	Resume parser integration
+•	Resume builder functionality
+Deliverables:
+•	Job posting module
+•	Search and filter system
+•	Application management system
+•	Resume builder tool
+•	Job database schema
+•	API endpoints for job operations
+
+ Team Member 3: Full-Stack - Social Features & Communication
+
+Responsibilities:
+•	News feed system (posts, likes, comments, shares)
+•	Connection/follow system
+•	Groups and communities
+•	Real-time messaging system
+•	Notification system (email & in-app)
+•	Recommendation engine
+•	Content reporting system
+Deliverables:
+•	Social networking module
+•	Chat/messaging system
+•	Notification engine
+•	News feed interface
+•	Recommendation algorithm
+•	WebSocket/AJAX for real-time features
+
+ Team Member 4: Full-Stack - Admin Panel, Analytics & Frontend
+
+Responsibilities:
+•	Admin dashboard with full management capabilities
+•	Employer dashboard
+•	Analytics and reporting system
+•	Payment/subscription integration
+•	CMS for static pages
+•	Overall UI/UX implementation and consistency
+•	Responsive design across all modules
+•	Frontend integration of all backend APIs
+•	Help and support system
+Deliverables:
+•	Admin dashboard
+•	Employer dashboard
+•	Analytics module
+•	Payment integration
+•	Responsive UI templates
+•	Static pages (About, Terms, Help)
+•	FAQ and support system
+4.	Key Deliverables IEEE Std 1058-1998 Guidance
+
+Technical Deliverables:
+1.	Application Components: 
+o	User Registration & Authentication Module
+o	Profile Management System
+o	Job Posting & Management Module
+o	Job Search & Filtering Engine
+o	Application Management System
+o	Social Networking Features (Feed, Connections, Groups)
+o	Messaging System (Real-time Chat)
+o	Notification System
+o	Admin Dashboard
+o	Employer Dashboard
+o	Resume Builder/Parser
+o	Recommendation Engine
+o	Analytics & Reporting Module
+o	Payment/Subscription System
+o	CMS for Static Content
+2.	Database: 
+o	Complete MySQL/PostgreSQL database with all tables, relationships, and indexes
+o	Database backup and recovery procedures
+3.	Security Components: 
+o	HTTPS implementation
+o	Password encryption (bcrypt)
+o	Input validation and sanitization
+o	SQL injection and XSS prevention
+o	CSRF token protection
+o	Role-based access control
+4.	API Documentation: 
+o	RESTful API endpoints documentation
+o	Request/response formats
+o	Authentication mechanisms
+o	Error handling specifications
+Documentation Deliverables:
+5.	Technical Documentation: 
+o	System architecture document
+o	Database schema and ER diagrams
+o	API documentation
+o	Code documentation (inline comments, PHPDoc)
+o	Deployment guide
+o	Server configuration guide
+6.	User Documentation: 
+o	User manual for Job Seekers
+o	User manual for Employers
+o	Administrator guide
+o	FAQ section
+o	Video tutorials (optional)
+7.	Project Management Documents: 
+o	Project plan with Gantt chart
+o	Risk assessment and mitigation plan
+o	Test plans and test cases
+o	UAT documentation
+o	Change management log
+Quality Assurance Deliverables:
+8.	Testing Artifacts: 
+o	Unit test cases and results
+o	Integration test reports
+o	Security audit report
+o	Performance test results
+o	Browser compatibility report
+o	Mobile responsiveness test results
+Deployment Deliverables:
+9.	Production System: 
+o	Deployed application on production server
+o	Configured web server (Apache/Nginx)
+o	SSL certificate installation
+o	Backup and monitoring systems
+o	Email server configuration
+o	Payment gateway integration
+10.	Training Materials: 
+o	Admin training presentations
+o	User onboarding materials
+o	Video demonstrations
+
+Recommended Technology Stack
+Development:
+•	Backend: PHP 8.x with Laravel/CodeIgniter framework
+•	Database: MySQL 8.0 or PostgreSQL
+•	Frontend: HTML5, CSS3, JavaScript, Bootstrap 5
+•	Real-time: WebSocket (Socket.io) or AJAX for messaging
+•	Libraries: jQuery, Chart.js (analytics), Select2 (dropdowns)
+Tools:
+•	Version Control: Git with GitHub/GitLab
+•	Project Management: MS Project, Jira, or Trello
+•	Communication: Slack or Microsoft Teams
+•	Testing: PHPUnit, Selenium
+•	API Testing: Postman
+
+Infrastructure:
+•	Web Server: Apache 2.4 or Nginx is what we are thinking of using.
+•	Server OS: Ubuntu 20.04/22.04 LTS or CentOS due to simplicity on users ‘side.
+•	Hosting: Cloud hosting (AWS, DigitalOcean, or VPS) due to the useability across global platforms. 
+•	Email: SMTP service (SendGrid, Mailgun)
+•	Payment: Stripe or PayPal API
+•	Storage: Local or S3 for file uploads
+
+Critical Success Factors
+	•	Security: A robust authentication is targeted along with encryption and input validation. 
+	•	Performance: Queries revolving around database must be optimized and caching, implemented.
+	•	User Experience: Simple and understandable interface with linear learning curve.
+	•	Scalability: Architecture designed such that the future growth and adaptability with newer machines and topologies are not compromised.
+	•	Testing: Testing must include different techniques and broader range of testers. 
+	•	Communication: Communication will be based on Regular team meetings and reflect on developments. 
+
+
+
+
+
+

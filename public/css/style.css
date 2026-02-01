@@ -1,0 +1,44 @@
+/* JBook Custom Styles */
+
+html,
+body {
+    overscroll-behavior-y: none;
+}
+
+.home-card {
+    transition: transform 0.3s;
+}
+
+.home-card:hover {
+    transform: translateY(-5px);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}/* Social Login Buttons */
+.btn-google {
+    background-color: #DB4437;
+    color: white;
+}
+.btn-google:hover {
+    background-color: #c53929;
+    color: white;
+}
+
+.btn-facebook {
+    background-color: #4267B2;
+    color: white;
+}
+.btn-facebook:hover {
+    background-color: #365899;
+    color: white;
+}
+
+.btn-apple {
+    background-color: #000000;
+    color: white;
+}
+.btn-apple:hover {
+    background-color: #333333;
+    color: white;
+}

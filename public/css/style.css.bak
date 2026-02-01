@@ -1,0 +1,18 @@
+/* JBook Custom Styles */
+
+html,
+body {
+    overscroll-behavior-y: none;
+}
+
+.home-card {
+    transition: transform 0.3s;
+}
+
+.home-card:hover {
+    transform: translateY(-5px);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
