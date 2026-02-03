@@ -156,7 +156,7 @@ include 'includes/header.php';
                         <button class="btn btn-secondary w-100" disabled>Applied</button>
                     <?php elseif(!isset($_SESSION['user_id'])): ?>
                         <p>Please login to apply for this position.</p>
-                        <a href="login.php?redirect=job_details.php?id=<?php echo $job['job_id']; ?>" class="btn btn-primary w-100">Login to Apply</a>
+                        <a href="login.php?redirect=<?php echo urlencode('job_details.php?id=' . $job['job_id']); ?>" class="btn btn-primary w-100">Login to Apply</a>
 
                     <?php else: ?>
                         <?php if($error): ?>

@@ -7,6 +7,7 @@ $error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
+    $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : '';
 
     if (empty($email) || empty($password)) {
         $error = "Please enter email and password.";
@@ -39,6 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Check for redirect param
                             if (!empty($redirect)) {
                                 header("Location: $redirect");
+                            } elseif ($user['user_type'] == 'employer') {
+                                header("Location: employer_dashboard.php");
                             } else {
                                 header("Location: index.php");
                             }
@@ -88,9 +91,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="text-center mt-3">
                     <p class="text-muted small mb-2">Or continue with</p>
                     <div class="d-flex justify-content-center gap-2">
-                        <a href="social_login.php?provider=google" class="btn btn-google rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-google"></i></a>
-                        <a href="social_login.php?provider=facebook" class="btn btn-facebook rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="social_login.php?provider=apple" class="btn btn-apple rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-apple"></i></a>
+                        <?php $redirParams = isset($_GET['redirect']) ? '&redirect='.urlencode($_GET['redirect']) : ''; ?>
+                        <a href="social_login.php?provider=google<?php echo $redirParams; ?>" class="btn btn-google rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-google"></i></a>
+                        <a href="social_login.php?provider=facebook<?php echo $redirParams; ?>" class="btn btn-facebook rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="social_login.php?provider=apple<?php echo $redirParams; ?>" class="btn btn-apple rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fab fa-apple"></i></a>
                     </div>
                 </div>
             </div>

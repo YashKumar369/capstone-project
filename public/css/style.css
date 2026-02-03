@@ -15,11 +15,92 @@ body {
 
 .navbar-brand {
     font-size: 1.5rem;
-}/* Social Login Buttons */
+}
+
+/* Navbar Customization */
+.navbar-nav {
+    position: relative;
+    /* Context for absolute marker */
+    z-index: 10;
+}
+
+#nav-marker {
+    position: absolute;
+    height: 80%;
+    /* Almost full height but with some padding effect */
+    top: 10%;
+    /* Vertically centered */
+    left: 0;
+    width: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Semi-transparent sliding background */
+    border-radius: 30px;
+    /* Fully rounded "curvy" pill */
+    transition: all 0.6s cubic-bezier(0.5, 0, 0.1, 1.15);
+    /* Slower, elastic fluid motion */
+    z-index: 0;
+    /* Behind text */
+    pointer-events: none;
+    /* Ignore clicks */
+    opacity: 0;
+    /* Hidden initially */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    /* Only animate color */
+    padding: 0.5rem 1.2rem;
+    /* More horizontal padding for pill shape */
+    border-radius: 30px;
+    /* Match marker curvature */
+    margin: 0 4px;
+    /* More space between pills */
+    position: relative;
+    z-index: 1;
+    /* Above marker */
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+    color: #ffffff !important;
+    /* Removed background-color and transform here to let marker handle it */
+}
+
+/* Active Tab Highlight */
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    /* Subtle glow for active text */
+}
+
+/* Page Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply fade-in to main container */
+body>.container,
+body>.container-fluid {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Social Login Buttons */
 .btn-google {
     background-color: #DB4437;
     color: white;
 }
+
 .btn-google:hover {
     background-color: #c53929;
     color: white;
@@ -29,6 +110,7 @@ body {
     background-color: #4267B2;
     color: white;
 }
+
 .btn-facebook:hover {
     background-color: #365899;
     color: white;
@@ -38,6 +120,7 @@ body {
     background-color: #000000;
     color: white;
 }
+
 .btn-apple:hover {
     background-color: #333333;
     color: white;

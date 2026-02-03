@@ -27,7 +27,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse position-relative" id="mainNavbar">
       <?php 
         // Calculate Counts (Notifications & Messages)
         $unread_notif = 0;
@@ -54,40 +54,54 @@
         }
       ?>
 
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto" id="navLinks">
+        <?php 
+        // Helper to check active state
+        function isActive($page, $tab = null) {
+            $current_page = basename($_SERVER['PHP_SELF']);
+            $current_tab = isset($_GET['tab']) ? $_GET['tab'] : null;
+            
+            if ($current_page !== $page) return '';
+            if ($tab !== null && $current_tab !== $tab) return '';
+            
+            return 'active fw-bold';
+        }
+        ?>
+
         <?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin'): ?>
             <!-- Admin Navigation -->
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?tab=dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a class="nav-link <?php echo isActive('admin.php', 'dashboard'); ?>" href="admin.php?tab=dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?tab=users"><i class="fas fa-users"></i> Users</a>
+                <a class="nav-link <?php echo isActive('admin.php', 'users'); ?>" href="admin.php?tab=users"><i class="fas fa-users"></i> Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?tab=jobs"><i class="fas fa-briefcase"></i> Jobs</a>
+                <a class="nav-link <?php echo isActive('admin.php', 'jobs'); ?>" href="admin.php?tab=jobs"><i class="fas fa-briefcase"></i> Jobs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?tab=feed"><i class="fas fa-flag"></i> Feed</a>
+                <a class="nav-link <?php echo isActive('admin.php', 'verifications'); ?>" href="admin.php?tab=verifications"><i class="fas fa-id-card"></i> Verifications</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?tab=analytics"><i class="fas fa-chart-line"></i> Analytics</a>
+                <a class="nav-link <?php echo isActive('admin.php', 'feed'); ?>" href="admin.php?tab=feed"><i class="fas fa-flag"></i> Feed</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?tab=settings"><i class="fas fa-cogs"></i> Config</a>
+                <a class="nav-link <?php echo isActive('admin.php', 'analytics'); ?>" href="admin.php?tab=analytics"><i class="fas fa-chart-line"></i> Analytics</a>
             </li>
+
         <?php elseif(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'employer'): ?>
              <!-- Employer Navigation -->
             <li class="nav-item">
-                <a class="nav-link" href="employer_dashboard.php"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a class="nav-link <?php echo isActive('employer_dashboard.php', null); ?>" href="employer_dashboard.php"><i class="fas fa-chart-pie"></i> Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="employer_dashboard.php?tab=pipeline"><i class="fas fa-user-check"></i> Candidates</a>
+                <a class="nav-link <?php echo isActive('employer_dashboard.php', 'pipeline'); ?>" href="employer_dashboard.php?tab=pipeline"><i class="fas fa-user-check"></i> Candidates</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="feed.php">Feed</a>
+                <a class="nav-link <?php echo isActive('feed.php'); ?>" href="feed.php">Feed</a>
             </li>
              <li class="nav-item">
-                <a class="nav-link position-relative" href="messages.php">
+                <a class="nav-link position-relative <?php echo isActive('messages.php'); ?>" href="messages.php">
                     Messages
                     <?php if($unread_msg > 0): ?>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5rem;">
@@ -99,17 +113,17 @@
         <?php else: ?>
             <!-- Standard Navigation -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Home</a>
+                <a class="nav-link <?php echo isActive('index.php'); ?>" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="jobs.php">Find Jobs</a>
+                <a class="nav-link <?php echo isActive('jobs.php'); ?>" href="jobs.php">Find Jobs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="feed.php">Social Feed</a>
+                <a class="nav-link <?php echo isActive('feed.php'); ?>" href="feed.php">Social Feed</a>
             </li>
             <?php if(isset($_SESSION['user_id'])): ?>
                 <li class="nav-item">
-                    <a class="nav-link position-relative" href="messages.php">
+                    <a class="nav-link position-relative <?php echo isActive('messages.php'); ?>" href="messages.php">
                         Messages
                         <?php if($unread_msg > 0): ?>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5rem;">
@@ -121,6 +135,10 @@
             <?php endif; ?>
         <?php endif; ?>
       </ul>
+      
+      <!-- Sliding Marker -->
+      <div id="nav-marker"></div>
+      
       <ul class="navbar-nav ms-auto align-items-center">
         <?php if(isset($_SESSION['user_id'])): ?>
             <!-- Search Bar -->
@@ -169,5 +187,54 @@
     </div>
   </div>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const marker = document.getElementById('nav-marker');
+        const navLinksContext = document.getElementById('navLinks'); // primary nav container
+        
+        if (!marker || !navLinksContext) return;
+
+        function updateMarker(element) {
+            if (element && element.offsetParent) {
+                marker.style.width = element.offsetWidth + 'px';
+                marker.style.left = element.offsetLeft + 'px';
+                marker.style.opacity = '1';
+            } else {
+                 marker.style.opacity = '0';
+            }
+        }
+
+        // 1. Initial State: active tab
+        const activeLink = navLinksContext.querySelector('.nav-link.active');
+        if (activeLink) {
+            // Need a slight delay or resize observer to be safe, but usually this is fine
+            setTimeout(() => updateMarker(activeLink), 50);
+        }
+
+        // 2. Hover logic
+        const links = navLinksContext.querySelectorAll('.nav-link');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', (e) => {
+                updateMarker(e.target);
+            });
+        });
+
+        // 3. Mouse leave logic: return to active
+        navLinksContext.addEventListener('mouseleave', () => {
+            if (activeLink) {
+                updateMarker(activeLink);
+            } else {
+                marker.style.opacity = '0';
+            }
+        });
+        
+        // 4. Window Resize (recalculate)
+        window.addEventListener('resize', () => {
+             const currentActive = navLinksContext.querySelector('.nav-link.active');
+             if (currentActive) updateMarker(currentActive);
+        });
+    });
+</script>
 
 <div class="container mt-4 flex-grow-1">

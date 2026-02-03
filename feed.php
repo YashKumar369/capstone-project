@@ -122,10 +122,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_content'])) {
         exit;
     }
     $content = trim($_POST['post_content']);
-    if (!empty($content)) {
+    $image_url = null;
+
+    // Handle Image Upload
+    if (isset($_FILES['post_image']) && $_FILES['post_image']['error'] == 0) {
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $filename = $_FILES['post_image']['name'];
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        
+        if (in_array($ext, $allowed)) {
+            $new_name = uniqid() . "." . $ext;
+            $upload_dir = 'uploads/posts/';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+            $target = $upload_dir . $new_name;
+            if (move_uploaded_file($_FILES['post_image']['tmp_name'], $target)) {
+                $image_url = $target;
+            }
+        }
+    }
+
+    if (!empty($content) || $image_url) { // Allow post if only image exists too, or require content? Let's generic: at least one
         try {
-            $stmt = $pdo->prepare("INSERT INTO posts (user_id, content) VALUES (?, ?)");
-            $stmt->execute([$_SESSION['user_id'], $content]);
+            $stmt = $pdo->prepare("INSERT INTO posts (user_id, content, image_url) VALUES (?, ?, ?)");
+            $stmt->execute([$_SESSION['user_id'], $content, $image_url]);
             
             // Notify Followers (Optional)
             $followers = $pdo->prepare("SELECT user_id_1 FROM connections WHERE user_id_2 = ? AND status = 'accepted'");
@@ -247,10 +268,21 @@ include 'includes/header.php';
             <?php if(isset($_SESSION['user_id'])): ?>
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
-                    <form method="POST" action="feed.php">
-                        <textarea class="form-control mb-2 border-0 bg-light" name="post_content" placeholder="What's on your mind? Share an update..." rows="3" required></textarea>
+                    <form method="POST" action="feed.php" enctype="multipart/form-data">
+                        <textarea class="form-control mb-2 border-0 bg-light" name="post_content" placeholder="What's on your mind? Share an update..." rows="3"></textarea>
+                        
+                        <!-- Image Preview / Filename -->
+                        <div id="image-preview" class="mb-2 text-primary small" style="display:none;">
+                            <i class="fas fa-image"></i> <span id="file-name"></span>
+                        </div>
+
                         <div class="d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-light btn-sm text-secondary"><i class="fas fa-image"></i> Photo</button>
+                            <!-- Hidden File Input -->
+                            <input type="file" name="post_image" id="postImage" class="d-none" accept="image/*" onchange="document.getElementById('file-name').textContent = this.files[0].name; document.getElementById('image-preview').style.display = 'block';">
+                            
+                            <button type="button" class="btn btn-light btn-sm text-secondary" onclick="document.getElementById('postImage').click()">
+                                <i class="fas fa-image"></i> Photo
+                            </button>
                             <button type="submit" class="btn btn-primary btn-sm px-4">Post</button>
                         </div>
                     </form>
@@ -277,8 +309,10 @@ include 'includes/header.php';
                                 </div>
                             </div>
                             <p class="card-text"><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
-                            <?php if($post['image_url']): ?>
-                                <img src="<?php echo htmlspecialchars($post['image_url']); ?>" class="img-fluid rounded mb-3" alt="Post Image">
+                            <?php if(!empty($post['image_url'])): ?>
+                                <div class="mb-3">
+                                    <img src="<?php echo htmlspecialchars($post['image_url']); ?>" class="img-fluid rounded" alt="Post Image">
+                                </div>
                             <?php endif; ?>
                             <hr>
                             
@@ -415,9 +449,24 @@ include 'includes/header.php';
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Move modal to body to prevent backdrop from blocking the modal
+    // due to nested container stacking contexts
+    const modalEl = document.getElementById('reportModal');
+    if (modalEl) {
+        document.body.appendChild(modalEl);
+    }
+});
+
+let reportModalInstance = null;
 function openReportModal(postId) {
     document.getElementById('report_post_id').value = postId;
-    new bootstrap.Modal(document.getElementById('reportModal')).show();
+    const el = document.getElementById('reportModal');
+    
+    if (!reportModalInstance) {
+        reportModalInstance = new bootstrap.Modal(el);
+    }
+    reportModalInstance.show();
 }
 </script>
 

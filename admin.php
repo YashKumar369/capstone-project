@@ -184,27 +184,8 @@ if($active_tab == 'verifications') {
     <div class="row">
         <!-- Main Content -->
         <div class="col-md-12">
-            <!-- Navigation -->
-            <ul class="nav nav-pills mb-4">
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $active_tab=='dashboard'?'active':''; ?>" href="?tab=dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $active_tab=='users'?'active':''; ?>" href="?tab=users"><i class="fas fa-users"></i> Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $active_tab=='jobs'?'active':''; ?>" href="?tab=jobs"><i class="fas fa-briefcase"></i> Jobs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $active_tab=='verifications'?'active':''; ?>" href="?tab=verifications"><i class="fas fa-id-card"></i> Verifications</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $active_tab=='feed'?'active':''; ?>" href="?tab=feed"><i class="fas fa-comments"></i> Feed</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $active_tab=='analytics'?'active':''; ?>" href="?tab=analytics"><i class="fas fa-chart-line"></i> Analytics</a>
-                </li>
-            </ul>
+            <!-- Navigation (Moved to Header) -->
+
 
             <?php if($message): ?><div class="alert alert-success"><?php echo $message; ?></div><?php endif; ?>
             <?php if($error): ?><div class="alert alert-danger"><?php echo $error; ?></div><?php endif; ?>

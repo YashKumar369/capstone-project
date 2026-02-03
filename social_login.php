@@ -3,6 +3,7 @@ session_start();
 require_once 'config/db.php';
 
 $provider = isset($_GET['provider']) ? $_GET['provider'] : '';
+$redirect = isset($_REQUEST['redirect']) ? $_REQUEST['redirect'] : '';
 
 // Map provider to brand colors/names
 $brands = [
@@ -66,7 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_mock_login']))
 
         // Redirect
         // Redirect based on role
-        if ($_SESSION['user_type'] == 'admin') {
+        if (!empty($redirect)) {
+             header("Location: $redirect");
+        } elseif ($_SESSION['user_type'] == 'admin') {
             header("Location: admin.php");
         } elseif ($_SESSION['user_type'] == 'employer') {
             header("Location: employer_dashboard.php");
@@ -103,6 +106,7 @@ include 'includes/header.php';
 
                     <form method="POST">
                         <input type="hidden" name="confirm_mock_login" value="1">
+                        <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
                         <div class="d-grid gap-2">
                             <button class="btn btn-lg text-white" style="background-color: <?php echo $brand['color']; ?>;">
                                 Simulate Successful Login
